@@ -1,0 +1,123 @@
+basePath: /
+definitions:
+  model.Data:
+    properties:
+      Id:
+        type: string
+      TenderID:
+        type: string  
+      Accountcode:
+        type: string
+      Account:
+        type: string
+      Name:
+        type: string
+      Currency:
+        type: string
+      Branch:
+        type: string
+      Amount:
+        type: string
+      Status:
+        type: string
+    type: object
+host: ${ENDPOINT_URL}
+info:
+  contact:
+    email: soberkoder@swagger.io
+    name: API Support
+  description: This is a sample serice for managing dapp
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Soteria-Space Dapp API
+  version: "1.0"
+paths:
+  /CreateData:
+    post:
+      consumes:
+      - application/json
+      description: '傳入以下參數 <br> Id: 透過DB查出 <br> TenderID: 標案號 <br> Accountcode: 銀行代碼
+        <br> Account: 銀行代碼 <br> Name: 戶名 <br> Currency: 幣別 <br> Branch: 分行 <br> Amount:
+        金額 <br> Status: 憑證狀態'
+      parameters:
+      - description: CreateData
+        in: body
+        name: dapp
+        required: true
+        schema:
+          $ref: '#/definitions/model.Data'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Data already exists
+      summary: https://tender-chain.fishlab.com.tw/CreateData
+      tags:
+      - DApp
+  /GetHistory:
+    get:
+      consumes:
+      - application/json
+      description: '傳入以下參數 <br> Id: 透過DB查出'
+      parameters:
+      - description: Id
+        in: query
+        name: Id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: https://tender-chain.fishlab.com.tw/GetHistory
+      tags:
+      - DApp
+  /ReadData:
+    get:
+      consumes:
+      - application/json
+      description: '傳入以下參數 <br> Id: 透過DB查出'
+      parameters:
+      - description: Id
+        in: query
+        name: Id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Data'
+      summary: https://tender-chain.fishlab.com.tw/ReadData
+      tags:
+      - DApp
+  /UpdateData:
+    post:
+      consumes:
+      - application/json
+      description: '<br> Id: 透過DB查出 <br> TenderID: 標案號 <br> Accountcode: 銀行代碼 <br>
+        Account: 銀行代碼 <br> Name: 戶名 <br> Currency: 幣別 <br> Branch: 分行 <br> Amount:
+        金額 <br> Status: 憑證狀態'
+      parameters:
+      - description: UpdateData
+        in: body
+        name: dapp
+        required: true
+        schema:
+          $ref: '#/definitions/model.Data'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: https://tender-chain.fishlab.com.tw/UpdateData
+      tags:
+      - DApp
+swagger: "2.0"
